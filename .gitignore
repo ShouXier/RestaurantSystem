@@ -1,0 +1,19 @@
+# Build artifacts
+bin/
+obj/
+*.o
+*.exe
+*.out
+
+# IDE files
+.vscode/*.log
+.vscode/.browse.c_cpp.db*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*~
+*.swp
+*.swo
