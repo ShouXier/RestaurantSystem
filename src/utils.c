@@ -16,11 +16,9 @@ void clear_screen(void) {
 void pause_screen(void) {
     int c;
     printf("\n按回车键继续...");
-    /* 清除所有已有输入 */
-    while ((c = getchar()) != '\n' && c != EOF);
-    /* 等待用户按回车 */
-    if (c != EOF) {
-        getchar();
+    /* 清除所有已有输入直到换行或EOF */
+    while ((c = getchar()) != '\n' && c != EOF) {
+        /* 继续清除 */
     }
 }
 

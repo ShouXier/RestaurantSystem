@@ -60,7 +60,6 @@ void takeout_system_insert(TakeoutSystem* sys) {
         
         dish = menu_search_dish(sys->menu, dish_id);
         if (dish == NULL) {
-            int c;
             printf("未找到该菜品！\n");
             /* 清除输入缓冲区 */
             while ((c = getchar()) != '\n' && c != EOF);
