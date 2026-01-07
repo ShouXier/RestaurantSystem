@@ -100,11 +100,12 @@ void dish_display(const Dish* dish) {
 
 /* 输入菜品信息 */
 void dish_input(Dish* dish) {
-    int cat, flv;
+    int cat, flv, c;
     
     printf("请输入菜品编号: ");
     scanf("%d", &dish->id);
-    while (getchar() != '\n');  /* 清除输入缓冲区 */
+    /* 清除输入缓冲区 */
+    while ((c = getchar()) != '\n' && c != EOF);
     
     printf("请输入菜品名称: ");
     fgets(dish->name, 50, stdin);
@@ -120,5 +121,6 @@ void dish_input(Dish* dish) {
     
     printf("请输入价格: ");
     scanf("%lf", &dish->price);
-    while (getchar() != '\n');  /* 清除输入缓冲区 */
+    /* 清除输入缓冲区 */
+    while ((c = getchar()) != '\n' && c != EOF);
 }

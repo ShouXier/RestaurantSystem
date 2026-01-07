@@ -59,6 +59,8 @@ const Bill* dinein_get_bill_const(const Dinein* dinein) {
 
 /* 输入堂食订单信息 */
 void dinein_set(Dinein* dinein) {
+    int c;
+    
     printf("请输入顾客姓名: ");
     fgets(dinein->base.name, 20, stdin);
     dinein->base.name[strcspn(dinein->base.name, "\n")] = '\0';
@@ -69,11 +71,11 @@ void dinein_set(Dinein* dinein) {
     
     printf("请输入桌号: ");
     scanf("%d", &dinein->table_number);
-    while (getchar() != '\n');
+    while ((c = getchar()) != '\n' && c != EOF);
     
     printf("请输入用餐人数: ");
     scanf("%d", &dinein->people_count);
-    while (getchar() != '\n');
+    while ((c = getchar()) != '\n' && c != EOF);
     
     printf("请输入预约时间 (例如: 18:30): ");
     fgets(dinein->reserve_time, 20, stdin);

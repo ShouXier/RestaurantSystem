@@ -31,7 +31,7 @@ int dinein_system_generate_order_number(void) {
 
 /* 添加订单 */
 void dinein_system_insert(DineinSystem* sys) {
-    int dish_id, quantity;
+    int dish_id, quantity, c;
     char continue_add;
     Dish* dish;
     
@@ -61,7 +61,8 @@ void dinein_system_insert(DineinSystem* sys) {
         dish = menu_search_dish(sys->menu, dish_id);
         if (dish == NULL) {
             printf("未找到该菜品！\n");
-            while (getchar() != '\n');
+            /* 清除输入缓冲区 */
+            while ((c = getchar()) != '\n' && c != EOF);
             printf("是否继续添加菜品？(y/n): ");
             scanf("%c", &continue_add);
             continue;
@@ -72,7 +73,8 @@ void dinein_system_insert(DineinSystem* sys) {
         
         bill_add_item(&new_order->bill, dish, quantity);
         
-        while (getchar() != '\n');
+        /* 清除输入缓冲区 */
+        while ((c = getchar()) != '\n' && c != EOF);
         printf("是否继续添加菜品？(y/n): ");
         scanf("%c", &continue_add);
     }
