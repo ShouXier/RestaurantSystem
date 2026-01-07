@@ -5,7 +5,9 @@
 
 using namespace std;
 
-Menu::Menu() : count(0) {}
+Menu::Menu() {
+    count = 0;  // 在函数体里赋值
+}
 
 // 插入菜品
 bool Menu:: insertDish(const Dish& dish) {
