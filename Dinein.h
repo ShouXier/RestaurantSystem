@@ -4,35 +4,27 @@
 #include "Order.h"
 #include "Bill.h"
 
-class Dinein : public Order {
-private:
+typedef struct {
+    Order base;              // 基类
     int tableNumber;         // 桌号
     int peopleCount;         // 用餐人数
     char reserveTime[20];    // 预约时间
     Bill cost;               // 账单
+} Dinein;
 
-public:
-    // 构造函数
-    Dinein();
-    Dinein(int num, const char* name, const char* phone, 
-           int table, int people, const char* time);
-    
-    // Setter 方法
-    void setTableNumber(int table);
-    void setPeopleCount(int people);
-    void setReserveTime(const char* time);
-    
-    // Getter 方法
-    int getTableNumber() const;
-    int getPeopleCount() const;
-    const char* getReserveTime() const;
-    Bill& getBill();
-    const Bill& getBill() const;
-    
-    // 重写虚函数
-    void set() override;
-    void get() const override;
-    void display() const override;
-};
+void Dinein_Init(Dinein* dinein);
+void Dinein_Create(Dinein* dinein, int num, const char* name, const char* phone, 
+                   int table, int people, const char* time);
+void Dinein_SetTableNumber(Dinein* dinein, int table);
+void Dinein_SetPeopleCount(Dinein* dinein, int people);
+void Dinein_SetReserveTime(Dinein* dinein, const char* time);
+int Dinein_GetTableNumber(const Dinein* dinein);
+int Dinein_GetPeopleCount(const Dinein* dinein);
+const char* Dinein_GetReserveTime(const Dinein* dinein);
+Bill* Dinein_GetBill(Dinein* dinein);
+const Bill* Dinein_GetBillConst(const Dinein* dinein);
+void Dinein_Set(Dinein* dinein);
+void Dinein_Get(const Dinein* dinein);
+void Dinein_Display(const Dinein* dinein);
 
 #endif

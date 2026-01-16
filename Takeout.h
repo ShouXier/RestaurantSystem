@@ -4,32 +4,24 @@
 #include "Order.h"
 #include "Bill.h"
 
-class Takeout : public Order {
-private:
+typedef struct {
+    Order base;              // 基类
     char address[100];       // 配送地址
-    char postscript[200];    // 附言
+    char postscript[200];    // 备注
     Bill cost;               // 账单
+} Takeout;
 
-public:
-    // 构造函数
-    Takeout();
-    Takeout(int num, const char* name, const char* phone, 
-            const char* addr, const char* ps);
-    
-    // Setter 方法
-    void setAddress(const char* addr);
-    void setPostscript(const char* ps);
-    
-    // Getter 方法
-    const char* getAddress() const;
-    const char* getPostscript() const;
-    Bill& getBill();
-    const Bill& getBill() const;
-    
-    // 重写虚函数
-    void set() override;
-    void get() const override;
-    void display() const override;
-};
+void Takeout_Init(Takeout* takeout);
+void Takeout_Create(Takeout* takeout, int num, const char* name, const char* phone, 
+                    const char* addr, const char* ps);
+void Takeout_SetAddress(Takeout* takeout, const char* addr);
+void Takeout_SetPostscript(Takeout* takeout, const char* ps);
+const char* Takeout_GetAddress(const Takeout* takeout);
+const char* Takeout_GetPostscript(const Takeout* takeout);
+Bill* Takeout_GetBill(Takeout* takeout);
+const Bill* Takeout_GetBillConst(const Takeout* takeout);
+void Takeout_Set(Takeout* takeout);
+void Takeout_Get(const Takeout* takeout);
+void Takeout_Display(const Takeout* takeout);
 
 #endif

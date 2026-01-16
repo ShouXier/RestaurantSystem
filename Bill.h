@@ -2,52 +2,36 @@
 #define BILL_H
 
 #include "Dish.h"
+#include <stdbool.h>
 
-const int MAX_BILL_ITEMS = 50;
+#define MAX_BILL_ITEMS 50
 
-// 账单项结构
-struct BillItem {
-    Dish dish;          // 菜品
-    int quantity;       // 份数
-    
-    BillItem() : quantity(0) {}
-    BillItem(const Dish& d, int q) : dish(d), quantity(q) {}
-    
-    double getSubtotal() const {
-        return dish.getPrice() * quantity;
-    }
-};
+typedef struct {
+    Dish dish;
+    int quantity;
+} BillItem;
 
-class Bill {
-private:
-    BillItem items[MAX_BILL_ITEMS];    // 账单项数组
-    int itemCount;                      // 账单项数量
-    double deliveryFee;                 // 配送费
+typedef struct {
+    BillItem items[MAX_BILL_ITEMS];
+    int itemCount;
+    double deliveryFee;
+} Bill;
 
-public:
-    // 构造函数
-    Bill();
-    
-    // 账单操作
-    bool addItem(const Dish& dish, int quantity);      // 添加账单项
-    bool removeItem(int dishId);                       // 删除账单项
-    bool modifyQuantity(int dishId, int newQuantity);  // 修改数量
-    void clear();                                      // 清空账单
-    
-    // 计算方法
-    double calculateSubtotal() const;     // 计算菜品总价
-    double calculateDeliveryFee() const;  // 计算配送费（总价的10%）
-    double calculateTotal() const;        // 计算总价
-    
-    // 显示方法
-    void display() const;
-    
-    // Getter 方法
-    int getItemCount() const;
-    const BillItem& getItem(int index) const;
-    
-    // Setter 方法
-    void setDeliveryFee(double fee);
-};
+void Bill_Init(Bill* bill);
+void BillItem_Init(BillItem* item);
+void BillItem_Create(BillItem* item, const Dish* dish, int quantity);
+double BillItem_GetSubtotal(const BillItem* item);
+
+bool Bill_AddItem(Bill* bill, const Dish* dish, int quantity);
+bool Bill_RemoveItem(Bill* bill, int dishId);
+bool Bill_ModifyQuantity(Bill* bill, int dishId, int newQuantity);
+void Bill_Clear(Bill* bill);
+double Bill_CalculateSubtotal(const Bill* bill);
+double Bill_CalculateDeliveryFee(const Bill* bill);
+double Bill_CalculateTotal(const Bill* bill);
+void Bill_Display(const Bill* bill);
+int Bill_GetItemCount(const Bill* bill);
+const BillItem* Bill_GetItem(const Bill* bill, int index);
+void Bill_SetDeliveryFee(Bill* bill, double fee);
 
 #endif

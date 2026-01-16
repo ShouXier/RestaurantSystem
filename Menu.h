@@ -2,34 +2,24 @@
 #define MENU_H
 
 #include "Dish.h"
+#include <stdbool.h>
 
-const int MAX_DISHES = 100;
+#define MAX_DISHES 100
 
-class Menu {
-private:
-    Dish dishes[MAX_DISHES];    // 菜品数组
-    int count;                  // 当前菜品数量
+typedef struct {
+    Dish dishes[MAX_DISHES];
+    int count;
+} Menu;
 
-public:
-    // 构造函数
-    Menu();
-    
-    // 菜单操作
-    bool insertDish(const Dish& dish);           // 插入菜品
-    bool deleteDish(int id);                     // 删除菜品
-    bool modifyDish(int id, const Dish& dish);   // 修改菜品
-    Dish* searchDish(int id);                    // 根据编号查询
-    void searchDishByName(const char* name);     // 根据名称查询
-    void displayAll() const;                     // 显示所有菜品
-    
-    // 获取菜品数量
-    int getCount() const;
-    
-    // 根据索引获取菜品
-    const Dish& getDish(int index) const;
-    
-    // 初始化示例数据
-    void initSampleData();
-};
+void Menu_Init(Menu* menu);
+bool Menu_InsertDish(Menu* menu, const Dish* dish);
+bool Menu_DeleteDish(Menu* menu, int id);
+bool Menu_ModifyDish(Menu* menu, int id, const Dish* dish);
+Dish* Menu_SearchDish(Menu* menu, int id);
+void Menu_SearchDishByName(Menu* menu, const char* name);
+void Menu_DisplayAll(const Menu* menu);
+int Menu_GetCount(const Menu* menu);
+const Dish* Menu_GetDish(const Menu* menu, int index);
+void Menu_InitSampleData(Menu* menu);
 
 #endif

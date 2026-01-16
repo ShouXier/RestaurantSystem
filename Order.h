@@ -1,37 +1,22 @@
 #ifndef ORDER_H
 #define ORDER_H
 
-#include <string>
-using namespace std;
+typedef struct {
+    int number;
+    char name[20];
+    char phoneNumber[12];
+} Order;
 
-class Order {
-protected:
-    int number;                 // 编号
-    char name[20];              // 顾客姓名
-    char phoneNumber[12];       // 联系电话
-
-public:
-    // 构造函数
-    Order();
-    Order(int num, const char* name, const char* phone);
-    
-    // 虚析构函数
-    virtual ~Order();
-    
-    // Setter 方法
-    void setNumber(int num);
-    void setName(const char* name);
-    void setPhoneNumber(const char* phone);
-    
-    // Getter 方法
-    int getNumber() const;
-    const char* getName() const;
-    const char* getPhoneNumber() const;
-    
-    // 虚函数
-    virtual void set();
-    virtual void get() const;
-    virtual void display() const;
-};
+void Order_Init(Order* order);
+void Order_Create(Order* order, int num, const char* name, const char* phone);
+void Order_SetNumber(Order* order, int num);
+void Order_SetName(Order* order, const char* name);
+void Order_SetPhoneNumber(Order* order, const char* phone);
+int Order_GetNumber(const Order* order);
+const char* Order_GetName(const Order* order);
+const char* Order_GetPhoneNumber(const Order* order);
+void Order_Set(Order* order);
+void Order_Get(const Order* order);
+void Order_Display(const Order* order);
 
 #endif
